@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="560" viewBox="0 0 1180 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2b6cb0"/>
+    </marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b46c1"/>
+    </marker>
+  </defs>
+
+  <rect width="1180" height="560" fill="#f7fafc"/>
+  <text x="590" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#1a202c">Архитектура геоинтеллектуального сервиса</text>
+  <text x="590" y="58" text-anchor="middle" font-size="13" fill="#718096">Браузер → Прокси-сервер (Express) → YandexGPT API</text>
+
+  <!-- Браузер -->
+  <rect x="40" y="110" width="330" height="330" rx="14" fill="#ffffff" stroke="#2b6cb0" stroke-width="2.5"/>
+  <rect x="40" y="110" width="330" height="46" rx="14" fill="#2b6cb0"/>
+  <rect x="40" y="136" width="330" height="20" fill="#2b6cb0"/>
+  <text x="205" y="140" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">БРАУЗЕР (клиент)</text>
+  <text x="60" y="185" font-size="14" font-weight="600" fill="#2d3748">Leaflet.js 1.9 + тайлы OSM</text>
+  <text x="60" y="210" font-size="13" fill="#4a5568">• интерактивная карта (zoom, pan)</text>
+  <text x="60" y="232" font-size="13" fill="#4a5568">• 26 маркеров 5 типов, popup</text>
+  <text x="60" y="254" font-size="13" fill="#4a5568">• фильтры типов (чекбоксы)</text>
+  <text x="60" y="276" font-size="13" fill="#4a5568">• выбор объекта → selectedObject</text>
+  <text x="60" y="298" font-size="13" fill="#4a5568">• формирование контекста (≤30 объектов)</text>
+  <text x="60" y="320" font-size="13" fill="#4a5568">• подсветка упомянутых ИИ объектов</text>
+
+  <rect x="60" y="345" width="290" height="72" rx="8" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="205" y="372" text-anchor="middle" font-size="13" font-weight="600" fill="#2a4365">GET /api/objects</text>
+  <text x="205" y="392" text-anchor="middle" font-size="12" fill="#4a6b8a">data/data.json — 26 объектов района</text>
+  <text x="205" y="408" text-anchor="middle" font-size="11" fill="#718096">(реальные данные OpenStreetMap, ODbL)</text>
+
+  <!-- Прокси -->
+  <rect x="470" y="110" width="330" height="330" rx="14" fill="#ffffff" stroke="#2f855a" stroke-width="2.5"/>
+  <rect x="470" y="110" width="330" height="46" rx="14" fill="#2f855a"/>
+  <rect x="470" y="136" width="330" height="20" fill="#2f855a"/>
+  <text x="635" y="140" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">ПРОКСИ-СЕРВЕР (Node.js + Express)</text>
+  <text x="490" y="185" font-size="14" font-weight="600" fill="#2d3748">http://localhost:3000</text>
+  <text x="490" y="210" font-size="13" fill="#4a5568">• раздача статики public/</text>
+  <text x="490" y="232" font-size="13" fill="#4a5568">• GET /api/objects, GET /api/health</text>
+  <text x="490" y="254" font-size="13" fill="#4a5568">• POST /api/ask — вопрос к ИИ</text>
+  <text x="490" y="276" font-size="13" fill="#4a5568">• валидация: вопрос, лимит контекста</text>
+  <text x="490" y="298" font-size="13" fill="#4a5568">• сборка промпта (система+вопрос+JSON)</text>
+  <text x="490" y="320" font-size="13" fill="#4a5568">• обработка ошибок 401 / 429 / 413 / 504</text>
+  <text x="490" y="342" font-size="13" fill="#4a5568">• демо-анализатор (без ключей)</text>
+  <text x="490" y="364" font-size="13" fill="#4a5568">• извлечение OBJECTS: [id…] из ответа</text>
+
+  <rect x="490" y="382" width="290" height="40" rx="8" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="635" y="407" text-anchor="middle" font-size="12.5" font-weight="600" fill="#22543d">.env: YC_API_KEY / YC_OAUTH_TOKEN — секреты не покидают сервер!</text>
+
+  <!-- YandexGPT -->
+  <rect x="900" y="110" width="240" height="330" rx="14" fill="#ffffff" stroke="#6b46c1" stroke-width="2.5"/>
+  <rect x="900" y="110" width="240" height="46" rx="14" fill="#6b46c1"/>
+  <rect x="900" y="136" width="240" height="20" fill="#6b46c1"/>
+  <text x="1020" y="140" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">YandexGPT API</text>
+  <text x="920" y="185" font-size="13" font-weight="600" fill="#2d3748">llm.api.cloud.yandex.net</text>
+  <text x="920" y="210" font-size="13" fill="#4a5568">POST /foundationModels/</text>
+  <text x="920" y="230" font-size="13" fill="#4a5568">     v1/completion</text>
+  <text x="920" y="260" font-size="13" fill="#4a5568">modelUri:</text>
+  <text x="920" y="280" font-size="12" fill="#6b46c1">gpt://&lt;folder&gt;/yandexgpt-lite</text>
+  <text x="920" y="308" font-size="13" fill="#4a5568">temperature: 0.3</text>
+  <text x="920" y="328" font-size="13" fill="#4a5568">maxTokens: 500</text>
+  <text x="920" y="358" font-size="13" fill="#4a5568">авторизация:</text>
+  <text x="920" y="378" font-size="12" fill="#6b46c1">Api-Key или Bearer IAM-токен</text>
+
+  <!-- Стрелки -->
+  <line x1="370" y1="255" x2="470" y2="255" stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="420" y="243" text-anchor="middle" font-size="12.5" font-weight="600" fill="#2b6cb0">POST /api/ask</text>
+  <text x="420" y="276" text-anchor="middle" font-size="11" fill="#718096">{question, objects,</text>
+  <text x="420" y="290" text-anchor="middle" font-size="11" fill="#718096">selectedObject, mapCenter}</text>
+
+  <line x1="800" y1="255" x2="900" y2="255" stroke="#6b46c1" stroke-width="2.5" marker-end="url(#arrowg)"/>
+  <text x="850" y="243" text-anchor="middle" font-size="12.5" font-weight="600" fill="#6b46c1">HTTPS</text>
+  <text x="850" y="276" text-anchor="middle" font-size="11" fill="#718096">{modelUri, messages,</text>
+  <text x="850" y="290" text-anchor="middle" font-size="11" fill="#718096">completionOptions}</text>
+
+  <line x1="900" y1="330" x2="800" y2="330" stroke="#2f855a" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="7 5"/>
+  <text x="850" y="322" text-anchor="middle" font-size="11" fill="#276749">ответ + OBJECTS</text>
+
+  <line x1="470" y1="330" x2="370" y2="330" stroke="#2f855a" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="7 5"/>
+  <text x="420" y="322" text-anchor="middle" font-size="11" fill="#276749">{answer, mentionedIds, circle}</text>
+
+  <!-- Низ: обмен IAM-токеном -->
+  <rect x="470" y="470" width="330" height="62" rx="8" fill="#fffaf0" stroke="#ed8936" stroke-dasharray="5 4"/>
+  <text x="635" y="493" text-anchor="middle" font-size="12.5" font-weight="600" fill="#7b341e">Авто-обновление IAM-токена (живёт 12 ч)</text>
+  <text x="635" y="513" text-anchor="middle" font-size="11.5" fill="#975a16">YC_OAUTH_TOKEN → POST iam/v1/tokens → кэш до expiresAt − 5 мин</text>
+  <line x1="635" y1="440" x2="635" y2="470" stroke="#ed8936" stroke-width="2" stroke-dasharray="5 4"/>
+
+  <text x="205" y="500" text-anchor="middle" font-size="12" fill="#718096">Ключи API только на сервере</text>
+  <text x="1020" y="500" text-anchor="middle" font-size="12" fill="#718096">Клиент не видит токенов</text>
+</svg>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07080d">
+  <title>ГеоИнтеллект — агентный анализ инфраструктуры</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Leaflet через CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- фоновые «орбы» и сетка — как на космических лендингах -->
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+    <span class="grid-overlay"></span>
+  </div>
+
+  <!-- ══════════ Верхняя панель ══════════ -->
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ГеоИнтеллект — главная">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="markGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#5B9CFF"/><stop offset=".5" stop-color="#A17BFF"/><stop offset="1" stop-color="#FF79B0"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 1.5c1.2 7.6 4.9 11.3 14.5 14.5C20.9 19.2 17.2 22.9 16 30.5 14.8 22.9 11.1 19.2 1.5 16 11.1 12.8 14.8 9.1 16 1.5Z" fill="url(#markGrad)"/>
+          <circle cx="24.5" cy="6.5" r="2.6" fill="#FFC46B"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <strong>geo<span>gravity</span></strong>
+        <small>ГЕОИНТЕЛЛЕКТ · ЛАБОРАТОРИЯ</small>
+      </span>
+    </a>
+
+    <nav class="topnav" aria-label="Разделы">
+      <span class="active">Карта</span>
+      <span>Аналитика</span>
+      <a href="report/ОТЧЁТ.md" target="_blank" rel="noopener">Отчёт</a>
+    </nav>
+
+    <div class="topbar-right">
+      <span class="file-pill">basmanny_district.geo.json</span>
+      <span id="provider-badge" class="status-pill" title="Активный ИИ-провайдер">…</span>
+    </div>
+  </header>
+
+  <!-- ══════════ Hero ══════════ -->
+  <section class="hero">
+    <div class="eyebrow"><span class="pulse-dot"></span> AGENTIC GEO ANALYTICS <span class="eyebrow-sep">/</span> ЛАБОРАТОРНАЯ РАБОТА</div>
+    <h1>Инфраструктура <span class="grad-text">Басманного района</span> в поле зрения ИИ-агента</h1>
+    <p class="hero-sub">
+      Карта, пространственный контекст и ответы YandexGPT о том, что находится вокруг выбранного объекта.
+    </p>
+    <div class="stats">
+      <div class="stat"><b id="stat-objects">—</b><span>объектов на карте</span></div>
+      <div class="stat"><b>5</b><span>категорий</span></div>
+      <div class="stat"><b>1</b><span>ИИ-агент в контуре</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ Рабочая область ══════════ -->
+  <main class="workspace">
+    <!-- Левая колонка: карта -->
+    <section class="map-card">
+      <div class="card-head">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="10" r="2.4" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="card-head-text">
+          <span class="kicker">SPATIAL VIEW <span class="sep">/</span> LIVE</span>
+          <h2>Карта объектов</h2>
+        </div>
+        <span class="live-badge"><i></i> on-line</span>
+      </div>
+
+      <div class="filters" id="filters">
+        <!-- чекбоксы типов генерируются в app.js -->
+      </div>
+
+      <div id="map"></div>
+
+      <p class="hint">
+        <span>✦</span> Кликните объект, чтобы выбрать его, затем задайте вопрос агенту справа.
+      </p>
+    </section>
+
+    <!-- Правая колонка: ИИ-диалог -->
+    <aside class="ai-side">
+      <div class="agent-head">
+        <span class="agent-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 1.8c.9 5.7 3.7 8.5 10.2 10.2C15.7 13.7 12.9 16.5 12 22.2 11.1 16.5 8.3 13.7 1.8 12 8.3 10.3 11.1 7.5 12 1.8Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="agent-title">
+          <h2>Гео-агент <span class="agent-tag">AI</span></h2>
+          <p>Анализ пространственных данных</p>
+        </div>
+        <span class="agent-online" title="Агент активен"></span>
+      </div>
+
+      <div class="selected-box" id="selected-box" hidden>
+        <span class="sel-label">КОНТЕКСТ / ОБЪЕКТ</span>
+        <strong id="selected-name"></strong>
+        <button id="clear-selection" title="Снять выбор" aria-label="Снять выбор">×</button>
+      </div>
+
+      <div class="chat" id="chat">
+        <div class="msg ai">
+          <div class="bubble">
+            Привет. Я вижу объекты на карте и их атрибуты. Выберите маркер или просто спросите,
+            например: «Сколько школ в радиусе 1 км от выбранной остановки?»
+            <div class="meta">агент · готов к запросу</div>
+          </div>
+        </div>
+      </div>
+
+      <form id="ask-form" class="ask-form">
+        <div class="input-wrap">
+          <textarea id="question" rows="2" maxlength="500"
+            placeholder="Спросите агента о районе…"></textarea>
+          <span class="composer-hint" aria-hidden="true">↵</span>
+          <button type="submit" id="ask-btn" aria-label="Отправить вопрос" title="Отправить вопрос">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h13M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="examples">
+        <span class="examples-label">БЫСТРЫЕ ЗАПРОСЫ</span>
+        <div class="chips">
+          <button class="chip" data-q="Сколько школ находится в радиусе 1 км от выбранной остановки?">Школы в 1 км</button>
+          <button class="chip" data-q="Какие парки есть рядом с этой поликлиникой?">Парки рядом</button>
+          <button class="chip" data-q="Какая поликлиника ближе всего к выбранному объекту?">Ближайшая поликлиника</button>
+          <button class="chip" data-q="Что находится в радиусе 800 м от центра карты?">Всё в 800 м</button>
+        </div>
+      </div>
+
+      <div id="status" class="status" hidden></div>
+    </aside>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

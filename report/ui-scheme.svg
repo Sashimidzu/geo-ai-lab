@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="780" viewBox="0 0 1280 780" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5B9CFF"/><stop offset=".52" stop-color="#A17BFF"/><stop offset="1" stop-color="#FF79B0"/>
+    </linearGradient>
+    <radialGradient id="orbA" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3A63D8" stop-opacity=".45"/><stop offset="1" stop-color="#3A63D8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbB" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7B3FD4" stop-opacity=".4"/><stop offset="1" stop-color="#7B3FD4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#ffffff" stroke-opacity=".035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- фон -->
+  <rect width="1280" height="780" fill="#07080D"/>
+  <circle cx="90" cy="40" r="360" fill="url(#orbA)"/>
+  <circle cx="1200" cy="120" r="380" fill="url(#orbB)"/>
+  <rect width="1280" height="780" fill="url(#grid)"/>
+
+  <!-- верхняя панель -->
+  <rect x="0" y="0" width="1280" height="58" fill="#0D0F18" fill-opacity=".92"/>
+  <path d="M 39 24 l 4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4 z" fill="url(#grad)"/>
+  <circle cx="58" cy="24" r="3" fill="#FFC46B"/>
+  <text x="74" y="35" font-size="16" font-weight="700" fill="url(#grad)">geo<text fill="#EAECF5">gravity</text></text>
+  <text x="74" y="48" font-size="7" letter-spacing="1.5" fill="#929AB0">ГЕОИНТЕЛЛЕКТ · ЛАБОРАТОРИЯ</text>
+  <rect x="220" y="17" width="76" height="26" rx="8" fill="#A17BFF" fill-opacity=".16" stroke="#A17BFF" stroke-opacity=".4"/>
+  <text x="240" y="34" font-size="11" fill="#F4F1FF">Карта</text>
+  <text x="320" y="34" font-size="11" fill="#929AB0">Аналитика</text>
+  <text x="400" y="34" font-size="11" fill="#929AB0">Отчёт</text>
+  <rect x="980" y="17" width="172" height="26" rx="8" fill="#FFFFFF" fill-opacity=".04" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="992" y="34" font-size="9.5" fill="#8FA5CF" font-family="monospace">basmanny_district.geo.json</text>
+  <rect x="1162" y="17" width="96" height="26" rx="13" fill="#FFC46B" fill-opacity=".1" stroke="#FFC46B" stroke-opacity=".35"/>
+  <text x="1173" y="34" font-size="9.5" fill="#FFDBA3">Демо-агент</text>
+
+  <!-- hero -->
+  <text x="30" y="95" font-size="9" letter-spacing="1.8" fill="#9DB4E8">✦  АГЕНТ-ПЕРВЫЙ ПОДХОД К ГОРОДСКИМ ДАННЫМ</text>
+  <text x="30" y="133" font-size="30" font-weight="800" fill="#EAECF5">Инфраструктура <tspan fill="url(#grad)">Басманного района</tspan></text>
+  <text x="30" y="168" font-size="30" font-weight="800" fill="#EAECF5">в поле зрения ИИ-агента</text>
+  <text x="30" y="195" font-size="12" fill="#929AB0">Интерактивная карта, пространственный контекст и ответы YandexGPT о том, что вокруг.</text>
+  <text x="30" y="224" font-size="19" font-weight="700" fill="#EAECF5">26</text>
+  <text x="30" y="239" font-size="9.5" fill="#929AB0">объектов на карте</text>
+  <text x="130" y="224" font-size="19" font-weight="700" fill="#EAECF5">5</text>
+  <text x="130" y="239" font-size="9.5" fill="#929AB0">категорий инфраструктуры</text>
+  <text x="280" y="224" font-size="19" font-weight="700" fill="#EAECF5">1</text>
+  <text x="280" y="239" font-size="9.5" fill="#929AB0">ИИ-агент в контуре</text>
+
+  <!-- ══ левая карточка: карта ══ -->
+  <rect x="30" y="262" width="766" height="488" rx="18" fill="#141A26" fill-opacity=".78" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="50" y="291" font-size="8" letter-spacing="1.6" fill="#7F8BA8">SPATIAL VIEW / LIVE</text>
+  <text x="50" y="311" font-size="15" font-weight="600" fill="#EAECF5">Карта объектов</text>
+  <rect x="700" y="282" width="76" height="22" rx="11" fill="#5EE0A0" fill-opacity=".08" stroke="#5EE0A0" stroke-opacity=".25"/>
+  <circle cx="713" cy="293" r="3" fill="#5EE0A0"/>
+  <text x="722" y="297" font-size="9" fill="#9CE9C3">on-line</text>
+
+  <!-- фильтры -->
+  <rect x="50" y="327" width="62" height="22" rx="11" fill="#A17BFF" fill-opacity=".14" stroke="#A17BFF" stroke-opacity=".5"/>
+  <text x="60" y="342" font-size="9.5" fill="#D4C2FF">🏫 Школы</text>
+  <rect x="120" y="327" width="104" height="22" rx="11" fill="#A17BFF" fill-opacity=".14" stroke="#A17BFF" stroke-opacity=".5"/>
+  <text x="130" y="342" font-size="9.5" fill="#D4C2FF">🏥 Поликлиники</text>
+  <rect x="232" y="327" width="70" height="22" rx="11" fill="#A17BFF" fill-opacity=".14" stroke="#A17BFF" stroke-opacity=".5"/>
+  <text x="242" y="342" font-size="9.5" fill="#D4C2FF">🌳 Парки</text>
+  <rect x="310" y="327" width="92" height="22" rx="11" fill="#A17BFF" fill-opacity=".14" stroke="#A17BFF" stroke-opacity=".5"/>
+  <text x="320" y="342" font-size="9.5" fill="#D4C2FF">🚏 Транспорт</text>
+  <rect x="410" y="327" width="96" height="22" rx="11" fill="#FFFFFF" fill-opacity=".035" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="420" y="342" font-size="9.5" fill="#AEB7CA">🎓 Вузы</text>
+
+  <!-- поле карты (тёмные тайлы CARTO) -->
+  <rect x="50" y="362" width="726" height="332" rx="14" fill="#10121C" stroke="#FFFFFF" stroke-opacity=".07"/>
+  <g stroke="#252A3A" fill="none">
+    <path d="M 50 500 L 776 470" stroke-width="11"/>
+    <path d="M 280 362 L 310 694" stroke-width="9"/>
+    <path d="M 560 362 L 530 694" stroke-width="8"/>
+    <path d="M 50 610 C 240 580 500 630 776 585" stroke-width="8"/>
+  </g>
+  <g stroke="#1B2130" fill="none" stroke-width="3">
+    <path d="M 50 420 L 776 405"/><path d="M 50 555 L 776 540"/>
+    <path d="M 170 362 L 190 694"/><path d="M 670 362 L 650 694"/>
+  </g>
+
+  <!-- круг радиуса -->
+  <circle cx="370" cy="510" r="92" fill="#A17BFF" fill-opacity=".1" stroke="#A17BFF" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="370" y="410" text-anchor="middle" font-size="9" fill="#CBB0FF">радиус анализа из ответа ИИ</text>
+
+  <!-- маркеры -->
+  <circle cx="300" cy="480" r="10" fill="#FF7A8A" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="296" y="484" font-size="9">🏫</text>
+  <circle cx="370" cy="510" r="11" fill="#FFC46B" stroke="#8FD4FF" stroke-width="3"/>
+  <text x="366" y="514" font-size="9">🚏</text>
+  <circle cx="440" cy="475" r="10" fill="#FF7A8A" stroke="#CBB0FF" stroke-width="3"/>
+  <text x="436" y="479" font-size="9">🏫</text>
+  <circle cx="330" cy="560" r="10" fill="#FF7A8A" stroke="#CBB0FF" stroke-width="3"/>
+  <text x="326" y="564" font-size="9">🏫</text>
+  <circle cx="610" cy="430" r="10" fill="#5EE0A0" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="606" y="434" font-size="9">🌳</text>
+  <circle cx="210" cy="430" r="10" fill="#B388FF" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="206" y="434" font-size="9">🎓</text>
+  <circle cx="600" cy="610" r="10" fill="#5B9CFF" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="596" y="614" font-size="9">🏥</text>
+
+  <!-- popup -->
+  <rect x="450" y="445" width="205" height="92" rx="12" fill="#121420" fill-opacity=".97" stroke="#A17BFF" stroke-opacity=".45"/>
+  <path d="M 460 537 l -10 12 l 16 -6 z" fill="#121420" stroke="#A17BFF" stroke-opacity=".45"/>
+  <text x="463" y="466" font-size="11" font-weight="700" fill="#EAECF5">Ухтомская улица</text>
+  <rect x="463" y="473" width="108" height="14" rx="7" fill="#FFC46B"/>
+  <text x="469" y="483" font-size="8.5" fill="#0B0D14">Остановки транспорта</text>
+  <text x="463" y="502" font-size="9.5" fill="#AAB3C8">📍 Басманный район, Москва</text>
+  <text x="463" y="522" font-size="9" fill="#A9C6FF">✓ Объект выбран — можно спрашивать</text>
+
+  <!-- легенда -->
+  <rect x="64" y="620" width="164" height="60" rx="10" fill="#10121C" fill-opacity=".9" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="76" y="636" font-size="9" font-weight="700" fill="#AEB7CA">Объекты инфраструктуры</text>
+  <circle cx="80" cy="650" r="4" fill="#FF7A8A"/><text x="90" y="653" font-size="8.5" fill="#DFE3F0">Школы и лицеи</text>
+  <circle cx="80" cy="665" r="4" fill="#5B9CFF"/><text x="90" y="668" font-size="8.5" fill="#DFE3F0">Поликлиники и больницы</text>
+  <circle cx="170" cy="650" r="4" fill="#5EE0A0"/><text x="180" y="653" font-size="8.5" fill="#DFE3F0">Парки</text>
+  <circle cx="170" cy="665" r="4" fill="#B388FF"/><text x="180" y="668" font-size="8.5" fill="#DFE3F0">Вузы</text>
+  <text x="640" y="684" font-size="8" fill="#7F899F">© OpenStreetMap contributors</text>
+  <text x="50" y="719" font-size="9.5" fill="#7F899F">✦ Кликните объект, затем задайте вопрос агенту справа.</text>
+
+  <!-- ══ правая карточка: агент ══ -->
+  <rect x="814" y="262" width="436" height="488" rx="18" fill="#141A26" fill-opacity=".78" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <rect x="832" y="280" width="36" height="36" rx="11" fill="url(#grad)"/>
+  <path d="M 850 288 l 1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#FFFFFF"/>
+  <text x="880" y="294" font-size="14" font-weight="600" fill="#EAECF5">Гео-агент</text>
+  <text x="880" y="309" font-size="10" fill="#929AB0">Анализ пространственных данных</text>
+  <circle cx="1222" cy="298" r="4" fill="#5EE0A0"/>
+  <path d="M 832 328 H 1232" stroke="#FFFFFF" stroke-opacity=".09"/>
+
+  <!-- выбранный объект -->
+  <rect x="832" y="340" width="400" height="30" rx="10" fill="#5B9CFF" fill-opacity=".1" stroke="#5B9CFF" stroke-opacity=".3"/>
+  <text x="843" y="359" font-size="8" letter-spacing="1" fill="#8FB8FF">КОНТЕКСТ / ОБЪЕКТ</text>
+  <text x="960" y="359" font-size="10" font-weight="600" fill="#EAF2FF">🚏 Ухтомская улица</text>
+  <text x="1215" y="359" font-size="13" fill="#8FA5CF">×</text>
+
+  <!-- чат -->
+  <rect x="832" y="384" width="330" height="60" rx="12" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <rect x="832" y="384" width="2" height="60" rx="1" fill="#A17BFF"/>
+  <text x="845" y="403" font-size="10" fill="#DFE3F0">Привет. Я вижу объекты на карте и их атрибуты.</text>
+  <text x="845" y="418" font-size="10" fill="#DFE3F0">Выберите маркер или просто спросите, например:</text>
+  <text x="845" y="433" font-size="10" fill="#DFE3F0">«Сколько школ в радиусе 1 км…?»</text>
+
+  <rect x="932" y="454" width="300" height="26" rx="12" fill="url(#grad)" fill-opacity=".85"/>
+  <text x="944" y="471" font-size="9.5" fill="#FFFFFF">Сколько школ в радиусе 1 км от выбранной остановки?</text>
+
+  <rect x="832" y="490" width="400" height="112" rx="12" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <rect x="832" y="490" width="2" height="112" rx="1" fill="#A17BFF"/>
+  <text x="845" y="509" font-size="10" fill="#DFE3F0">В радиусе 1.00 км от «Ухтомская улица» 5 школ:</text>
+  <text x="845" y="524" font-size="10" fill="#DFE3F0">«Школа №435» (417 м); «Школа на Яузе» (519 м);</text>
+  <text x="845" y="539" font-size="10" fill="#DFE3F0">«Школа № 733» (556 м); «Школа № 1228…» (604 м);</text>
+  <text x="845" y="554" font-size="10" fill="#DFE3F0">«ГБОУ СОШ № 2105…» (909 м).</text>
+  <text x="845" y="572" font-size="8.5" fill="#737E99">Демо-анализатор · 0.1 с · подсвечено объектов: 5</text>
+  <rect x="845" y="582" width="96" height="14" rx="7" fill="#A17BFF" fill-opacity=".1" stroke="#A17BFF" stroke-opacity=".42"/>
+  <text x="852" y="592" font-size="7.5" fill="#D4C2FF">🏫 Школа №435</text>
+  <rect x="948" y="582" width="104" height="14" rx="7" fill="#A17BFF" fill-opacity=".1" stroke="#A17BFF" stroke-opacity=".42"/>
+  <text x="955" y="592" font-size="7.5" fill="#D4C2FF">🏫 Школа на Яузе</text>
+
+  <!-- поле ввода -->
+  <rect x="832" y="614" width="400" height="50" rx="13" fill="#08090F" fill-opacity=".65" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="846" y="644" font-size="10" fill="#6C7690">Спросите агента о районе…</text>
+  <rect x="1182" y="621" width="40" height="36" rx="10" fill="url(#grad)"/>
+  <path d="M 1193 639 h 17 m -6 -6 l 6 6 -6 6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- быстрые запросы -->
+  <text x="832" y="684" font-size="8" letter-spacing="1.4" fill="#6F7A96">БЫСТРЫЕ ЗАПРОСЫ</text>
+  <rect x="832" y="692" width="82" height="20" rx="10" fill="#FFFFFF" fill-opacity=".035" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="842" y="706" font-size="8.5" fill="#A9B3C9">Школы в 1 км</text>
+  <rect x="922" y="692" width="78" height="20" rx="10" fill="#FFFFFF" fill-opacity=".035" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="932" y="706" font-size="8.5" fill="#A9B3C9">Парки рядом</text>
+  <rect x="1008" y="692" width="112" height="20" rx="10" fill="#FFFFFF" fill-opacity=".035" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <text x="1018" y="706" font-size="8.5" fill="#A9B3C9">Ближайшая поликлиника</text>
+
+  <text x="30" y="775" font-size="9" fill="#6F7A96">Схема интерфейса после обновления дизайна: тёмная тема в стиле Google Antigravity</text>
+</svg>

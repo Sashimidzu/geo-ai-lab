@@ -1,0 +1,18 @@
+{
+  "name": "geo-ai-lab",
+  "version": "1.0.0",
+  "description": "Геоинтеллектуальный веб-сервис анализа городской инфраструктуры (Leaflet + Express + YandexGPT)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "fetch:osm": "bash tools/fetch_osm.sh",
+    "build:data": "python3 tools/build_data.py"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
