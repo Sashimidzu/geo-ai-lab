@@ -3,7 +3,7 @@
 #  build_data.py — сборка data/data.json из выгрузок Overpass API
 #  (файлы tools/osm_*.json, полученные скриптом fetch_osm.sh).
 #
-#  Оставляет реальные объекты Басманного района Москвы с названиями,
+#  Оставляет реальные объекты Якутска с названиями,
 #  распределяет их по типам и округляет координаты.
 # ══════════════════════════════════════════════════════════════
 
@@ -16,8 +16,8 @@ TOOLS = Path(__file__).resolve().parent
 ROOT = TOOLS.parent
 OUT = ROOT / "data" / "data.json"
 
-# Центр района (МГТУ им. Баумана) — для сортировки «ближние первыми»
-CENTER = (55.7722, 37.7085)
+# Центр карты (площадь Ленина, Якутск) — для сортировки «ближние первыми»
+CENTER = (62.0355, 129.6800)
 
 # Карта исходных значений OSM → типы приложения
 SCHOOL_TAGS = ("school",)
@@ -124,7 +124,7 @@ def add_element(el, app_type, extra_desc=None, suffix=""):
         elif app_type == "medical":
             desc = "Медицинское учреждение"
         elif app_type == "park":
-            desc = "Зелёная зона Басманного района"
+            desc = "Зелёная зона Якутска"
         elif app_type == "transport":
             lines = tags.get("route_ref") or tags.get("ref") or ""
             desc = f"Маршруты: {lines}" if lines else "Остановка общественного транспорта"
@@ -139,7 +139,7 @@ def add_element(el, app_type, extra_desc=None, suffix=""):
             "id": f"osm-{app_type}-{el.get('id')}",
             "name": name,
             "type": app_type,
-            "address": addr or "Басманный район, Москва",
+            "address": addr or "Якутск, Республика Саха (Якутия)",
             "lat": round(float(lat), 6),
             "lng": round(float(lon), 6),
             "description": desc,
@@ -170,7 +170,7 @@ for el in load("park"):
     add_element(
         el,
         "park",
-        extra_desc=tags.get("name") and "Зелёная зона Басманного района" or None,
+        extra_desc=tags.get("name") and "Зелёная зона Якутска" or None,
     )
 
 # ── Транспорт ──────────────────────────────────────────
@@ -190,20 +190,19 @@ for el in load("transit"):
 for el in load("edu"):
     add_element(el, "education")
 
-# ── МГТУ им. Н.Э. Баумана — знаковый объект района ─────
-# (в OSM задан как relation с большим числом корпусов;
-#  добавляем точкой по адресу главного здания)
-if not any("Бауман" in o["name"] and o["type"] == "education" and "университет" in o["name"].lower()
-           for o in objects):
+# ── СВФУ им. М.К. Аммосова — знаковый объект Якутска ───
+# (в выгрузке OSM главный корпус не попал в выборку по amenity,
+#  добавляем его отдельно по данным OSM: way 966350337)
+if not any("Аммосова" in o["name"] and o["type"] == "education" for o in objects):
     objects.append(
         {
-            "id": "osm-education-mgtu",
-            "name": "МГТУ им. Н.Э. Баумана",
+            "id": "osm-education-svfu",
+            "name": "СВФУ им. М.К. Аммосова",
             "type": "education",
-            "address": "2-я Бауманская улица, 5с1",
-            "lat": 55.772292,
-            "lng": 37.708486,
-            "description": "Университет, главный учебный корпус",
+            "address": "улица Кулаковского, 48",
+            "lat": 62.021699,
+            "lng": 129.710591,
+            "description": "Университет, учебно-лабораторный корпус",
         }
     )
 
@@ -222,7 +221,7 @@ OUT.write_text(
     json.dumps(
         {
             "meta": {
-                "district": "Басманный район, Москва",
+                "district": "Якутск, Республика Саха (Якутия)",
                 "source": "OpenStreetMap (Overpass API), ODbL",
                 "center": {"lat": CENTER[0], "lng": CENTER[1]},
                 "generated": "etap 1 — сбор данных",

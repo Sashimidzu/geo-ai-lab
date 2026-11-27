@@ -23,7 +23,7 @@ const TYPES = {
   education: { label: 'Вузы и библиотеки',  icon: '🎓', color: '#b388ff' },
 };
 
-const DEFAULT_CENTER = [55.7722, 37.7085]; // Басманный район, Москва
+const DEFAULT_CENTER = [62.0355, 129.6800]; // Центр Якутска (площадь Ленина)
 const CONTEXT_LIMIT = 30;                  // лимит объектов в контексте для ИИ
 
 /* ══════ Глобальное состояние ══════ */
@@ -41,7 +41,7 @@ const map = L.map('map', { zoomControl: true }).setView(DEFAULT_CENTER, 15);
 
 /* Тайлы карты. По умолчанию — OpenStreetMap (без ключа); при наличии
    YANDEX_MAPS_API_KEY переключаемся на русские Яндекс.Карты. */
-let tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+let tileLayer = L.tileLayer('/api/tiles/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
@@ -56,7 +56,7 @@ function setTileLayer(useYandex, key) {
     ).addTo(map);
   } else {
     document.body.classList.remove('yandex-maps');
-    tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    tileLayer = L.tileLayer('/api/tiles/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);

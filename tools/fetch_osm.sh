@@ -1,11 +1,11 @@
 #!/bin/bash
-# Экспорт реальных объектов инфраструктуры Басманного района (Москва)
+# Экспорт реальных объектов инфраструктуры Якутска
 # из OpenStreetMap через Overpass API (аналог overpass-turbo.eu).
 # Результат: JSON-файлы в этой же папке (osm_*.json).
 set -u
 
 D="$(cd "$(dirname "$0")" && pwd)"
-BBOX="55.7575,37.6520,55.7810,37.7180"   # bbox Басманного района
+BBOX="62.0000,129.6200,62.0700,129.7400"   # bbox центральной части Якутска
 
 q_school='[out:json][timeout:25];(node["amenity"="school"]('"$BBOX"');way["amenity"="school"]('"$BBOX"'););out tags center 60;'
 q_med='[out:json][timeout:25];(node["amenity"~"^(clinic|doctors|hospital)$"]('"$BBOX"');way["amenity"~"^(clinic|doctors|hospital)$"]('"$BBOX"'););out tags center 60;'

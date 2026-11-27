@@ -38,7 +38,7 @@
 
   <!-- hero -->
   <text x="30" y="95" font-size="9" letter-spacing="1.8" fill="#9DB4E8">✦  АГЕНТ-ПЕРВЫЙ ПОДХОД К ГОРОДСКИМ ДАННЫМ</text>
-  <text x="30" y="133" font-size="30" font-weight="800" fill="#EAECF5">Инфраструктура <tspan fill="url(#grad)">Басманного района</tspan></text>
+  <text x="30" y="133" font-size="30" font-weight="800" fill="#EAECF5">Инфраструктура <tspan fill="url(#grad)">Якутска</tspan></text>
   <text x="30" y="168" font-size="30" font-weight="800" fill="#EAECF5">в поле зрения ИИ-агента</text>
   <text x="30" y="195" font-size="12" fill="#929AB0">Интерактивная карта, пространственный контекст и ответы YandexGPT о том, что вокруг.</text>
   <text x="30" y="224" font-size="19" font-weight="700" fill="#EAECF5">26</text>
@@ -68,7 +68,7 @@
   <rect x="410" y="327" width="96" height="22" rx="11" fill="#FFFFFF" fill-opacity=".035" stroke="#FFFFFF" stroke-opacity=".09"/>
   <text x="420" y="342" font-size="9.5" fill="#AEB7CA">🎓 Вузы</text>
 
-  <!-- поле карты (тёмные тайлы CARTO) -->
+  <!-- поле карты (тайлы OpenStreetMap через локальный прокси) -->
   <rect x="50" y="362" width="726" height="332" rx="14" fill="#10121C" stroke="#FFFFFF" stroke-opacity=".07"/>
   <g stroke="#252A3A" fill="none">
     <path d="M 50 500 L 776 470" stroke-width="11"/>
@@ -107,7 +107,7 @@
   <text x="463" y="466" font-size="11" font-weight="700" fill="#EAECF5">Ухтомская улица</text>
   <rect x="463" y="473" width="108" height="14" rx="7" fill="#FFC46B"/>
   <text x="469" y="483" font-size="8.5" fill="#0B0D14">Остановки транспорта</text>
-  <text x="463" y="502" font-size="9.5" fill="#AAB3C8">📍 Басманный район, Москва</text>
+  <text x="463" y="502" font-size="9.5" fill="#AAB3C8">📍 Якутск, Республика Саха (Якутия)</text>
   <text x="463" y="522" font-size="9" fill="#A9C6FF">✓ Объект выбран — можно спрашивать</text>
 
   <!-- легенда -->

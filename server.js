@@ -239,7 +239,7 @@ const TYPE_WORDS = {
   medical: ['поликлиник', 'больниц', 'клиник', 'врач', 'медиц', 'здрав'],
   park: ['парк', 'сад', 'сквер', 'зелен', 'прогул'],
   transport: ['останов', 'автобус', 'троллейбус', 'трамва', 'метро', 'транспорт', 'станци', 'мцк'],
-  education: ['вуз', 'университет', 'институт', 'библиотек', 'колледж', 'мгту'],
+  education: ['вуз', 'университет', 'институт', 'библиотек', 'колледж', 'свфу', 'ягу'],
 };
 
 function detectTypes(q) {
@@ -424,11 +424,11 @@ function buildMessages(question, objects, selectedObject, mapCenter) {
   });
 
   const system =
-    'Ты — ГИС-ассистент по городской инфраструктуре Басманного района Москвы. ' +
+    'Ты — ГИС-ассистент по городской инфраструктуре Якутска (Республика Саха (Якутия)). ' +
     'Отвечай кратко (до 120 слов) и только на основе предоставленных JSON-данных. ' +
     'Если данных для ответа недостаточно — честно скажи об этом. ' +
     'Расстояния считай по координатам: 1 градус широты ≈ 111 км, ' +
-    '1 градус долготы для Москвы ≈ 55.8 км (или через формулу гаверсинуса). ' +
+    '1 градус долготы для Якутска ≈ 52 км (или через формулу гаверсинуса). ' +
     'Если упоминаешь конкретные объекты, в самом конце ответа добавь строку вида ' +
     'OBJECTS: [id1,id2] — по ней фронтенд подсвечивает объекты на карте; ' +
     'эта строка не показывается пользователю.';
@@ -475,6 +475,48 @@ app.get('/api/objects', (_req, res) => {
     res.json(JSON.parse(fs.readFileSync(file, 'utf8')));
   } catch (e) {
     res.status(500).json({ error: `Не удалось прочитать data/data.json: ${e.message}` });
+  }
+});
+
+/* GET /api/tiles/:z/:x/:y.png — прокси тайлов OpenStreetMap.
+ * Браузер обращается только к этому серверу: карта работает даже если
+ * внешний CDN или прямой доступ к tile.openstreetmap.org недоступен. */
+const tileCache = new Map();
+const TILE_CACHE_MAX = 800;
+app.get('/api/tiles/:z/:x/:y.png', async (req, res) => {
+  const { z, x, y } = req.params;
+  if (!/^\d{1,2}$/.test(z) || !/^\d{1,6}$/.test(x) ||
+      !/^\d{1,6}$/.test(y) || Number(z) > 19) {
+    return res.status(400).end();
+  }
+  const key = `${z}/${x}/${y}`;
+  const cached = tileCache.get(key);
+  if (cached) {
+    res.set('Content-Type', 'image/png');
+    res.set('Cache-Control', 'public, max-age=86400');
+    return res.send(cached);
+  }
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const upstream = await fetch(`https://tile.openstreetmap.org/${key}.png`, {
+      signal: controller.signal,
+      headers: { 'User-Agent': 'GeoAiLab/1.0 (educational lab project)' },
+    });
+    if (!upstream.ok) return res.status(502).end();
+    const png = Buffer.from(await upstream.arrayBuffer());
+    tileCache.set(key, png);
+    if (tileCache.size > TILE_CACHE_MAX) {
+      tileCache.delete(tileCache.keys().next().value);
+    }
+    res.set('Content-Type', 'image/png');
+    res.set('Cache-Control', 'public, max-age=86400');
+    res.send(png);
+  } catch (_e) {
+    res.status(504).end();
+  } finally {
+    clearTimeout(timer);
   }
 });
 

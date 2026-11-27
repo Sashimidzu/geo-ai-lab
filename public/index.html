@@ -10,11 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Leaflet через CDN -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Leaflet лежит локально: карта работает даже без доступа к CDN -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <script src="vendor/leaflet/leaflet.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -54,7 +52,7 @@
     </nav>
 
     <div class="topbar-right">
-      <span class="file-pill">basmanny_district.geo.json</span>
+      <span class="file-pill">yakutsk_city.geo.json</span>
       <span id="provider-badge" class="status-pill" title="Активный ИИ-провайдер">…</span>
     </div>
   </header>
@@ -62,7 +60,7 @@
   <!-- ══════════ Hero ══════════ -->
   <section class="hero">
     <div class="eyebrow"><span class="pulse-dot"></span> AGENTIC GEO ANALYTICS <span class="eyebrow-sep">/</span> ЛАБОРАТОРНАЯ РАБОТА</div>
-    <h1>Инфраструктура <span class="grad-text">Басманного района</span> в поле зрения ИИ-агента</h1>
+    <h1>Инфраструктура <span class="grad-text">Якутска</span> в поле зрения ИИ-агента</h1>
     <p class="hero-sub">
       Карта, пространственный контекст и ответы YandexGPT о том, что находится вокруг выбранного объекта.
     </p>
